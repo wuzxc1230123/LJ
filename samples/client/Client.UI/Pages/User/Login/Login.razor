@@ -1,0 +1,27 @@
+﻿@layout UserLayout
+@page "/user/login"
+
+<div class="page">
+    <div class="login">
+        <Form Model="@_model" OnFinish="HandleSubmit">
+            <FormItem>
+                        <AntDesign.Input Placeholder="Username: admin or user" Size="large" @bind-Value="@context.UserName">
+                            <Prefix><Icon Type="user" /></Prefix>
+                        </AntDesign.Input>
+                    </FormItem>
+                    <FormItem>
+                        <AntDesign.Input Placeholder="Password: ant.design" Size="large" @bind-Value="@context.Password" Type="password">
+                            <Prefix><Icon Type="lock" /></Prefix>
+                        </AntDesign.Input>
+                    </FormItem>
+            <div>
+                <Checkbox Checked="@context.AutoLogin">
+                    Auto Login
+                </Checkbox>
+               
+            </div>
+            <Button Type="primary" HtmlType="submit" Class="submit" Size="large" Block>Log in </Button>
+        </Form>
+    </div>
+</div>
+

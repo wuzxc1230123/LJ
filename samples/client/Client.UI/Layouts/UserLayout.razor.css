@@ -1,0 +1,75 @@
+/* stylelint-disable at-rule-empty-line-before,at-rule-name-space-after,at-rule-no-unknown */
+/* stylelint-disable no-duplicate-selectors */
+/* stylelint-disable */
+/* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: auto;
+    background: #f0f2f5;
+}
+
+    .layout .lang {
+        width: 100%;
+        height: 40px;
+        line-height: 44px;
+        text-align: right;
+    }
+
+        .layout .lang :global(.ant-dropdown-trigger) {
+            margin-right: 24px;
+        }
+
+    .layout .content {
+        flex: 1;
+        padding: 32px 0;
+    }
+
+    .layout .top {
+        text-align: center;
+    }
+
+    .layout .header {
+        height: 44px;
+        line-height: 44px;
+    }
+
+        .layout .header a {
+            text-decoration: none;
+        }
+
+    .layout .logo {
+        height: 44px;
+        margin-right: 16px;
+        vertical-align: top;
+    }
+
+    .layout .title {
+        position: relative;
+        top: 2px;
+        color: rgba(0, 0, 0, 0.85);
+        font-weight: 600;
+        font-size: 33px;
+        font-family: Avenir, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+
+    .layout .desc {
+        margin-top: 12px;
+        margin-bottom: 40px;
+        color: rgba(0, 0, 0, 0.45);
+        font-size: 14px;
+    }
+
+@media (min-width: 768px) {
+    .layout {
+        background-image: url('https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg');
+        background-repeat: no-repeat;
+        background-position: center 110px;
+        background-size: 100%;
+    }
+
+        .layout .content {
+            padding: 32px 0 24px;
+        }
+}

@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+
+
+	<ItemGroup>
+		<PackageReference Include="AntDesign.Charts" Version="0.4.0" />
+		<PackageReference Include="AntDesign.ProLayout" Version="0.20.2.1" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+		<PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\LJ.Blazor\LJ.Blazor.csproj" />
+	</ItemGroup>
+
+
+</Project>

@@ -1,0 +1,42 @@
+﻿@using Client.UI.Pages.User.Login
+
+<AppRoot>
+    <CascadingAuthenticationState>
+        <Router AppAssembly="typeof(Routes).Assembly">
+            <Found Context="routeData">
+                <AuthorizeView>
+                    <Authorized>
+                        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+                        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+                    </Authorized>
+                    <Authorizing>
+                        <Spin Tip="Loading...">
+                            <Alert Message="Authentication in progress"
+                                   Description="You can only see this content while authentication is in progress."
+                                   Type="info" />
+                        </Spin>
+                    </Authorizing>
+                    <NotAuthorized>
+                        @if (context.User.Identity == null || !context.User.Identity.IsAuthenticated)
+                        {
+                            <LayoutView Layout="@typeof(UserLayout)">
+                                <Login></Login>
+                            </LayoutView>
+                        }
+                        else
+                        {
+                            <p>You are not authorized to access this resource.</p>
+                        }
+                    </NotAuthorized>
+                </AuthorizeView>
+            </Found>
+            <NotFound>
+                <LayoutView Layout="@typeof(UserLayout)">
+                    <Exception404></Exception404>
+                </LayoutView>
+
+            </NotFound>
+        </Router>
+    </CascadingAuthenticationState>
+</AppRoot>
+

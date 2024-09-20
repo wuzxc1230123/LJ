@@ -1,0 +1,13 @@
+﻿@namespace Client.UI.Components
+
+@RenderBody()
+
+<AntContainer />
+
+
+@code {
+    RenderFragment RenderChildContent =>
+    @<CascadingValue Value="this" IsFixed="true">
+        @ChildContent
+    </CascadingValue>;
+}
