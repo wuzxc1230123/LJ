@@ -14,16 +14,17 @@ public partial class Redirect : ComponentBase
     [NotNull]
     private NavigationManager? Navigation { get; set; }
 
-
     /// <summary>
     /// 获得/设置 登录地址 默认 
     /// </summary>
     [Parameter]
-    public string Url { get; set; } = "/User/Login";
+    public string Url { get; set; } = "User/Login";
 
 
-    protected override void OnInitialized()
+    protected override void OnAfterRender(bool firstRender)
     {
-        Navigation.NavigateTo(Url, true);
+        base.OnAfterRender(firstRender);
+        Navigation.NavigateTo(Url, false);
+
     }
 }

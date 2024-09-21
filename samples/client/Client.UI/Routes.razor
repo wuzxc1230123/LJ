@@ -2,11 +2,10 @@
 @using Client.UI.Pages.User.Login
 
 <AppRoot>
-    @* builder.Services.AddCascadingAuthenticationState(); *@
-
     <CascadingAuthenticationState>
         <Router AppAssembly="typeof(Routes).Assembly">
             <Found Context="routeData">
+
                 <AuthorizeView>
                     <Authorized>
                         <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
@@ -20,17 +19,10 @@
                         </Spin>
                     </Authorizing>
                     <NotAuthorized>
+                        <LayoutView Layout="@typeof(UserLayout)">
+                            <Login></Login>
+                        </LayoutView>
 
-                       @*  @if (context.User.Identity == null || !context.User.Identity.IsAuthenticated)
-                        {
-                            <LayoutView Layout="@typeof(UserLayout)">
-                                <Login></Login>
-                            </LayoutView>
-                        }
-                        else
-                        {
-                            <p>You are not authorized to access this resource.</p>
-                        } *@
                     </NotAuthorized>
                 </AuthorizeView>
             </Found>

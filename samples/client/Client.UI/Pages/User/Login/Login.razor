@@ -1,9 +1,6 @@
 ﻿@layout UserLayout
 @page "/User/Login"
-
-<RemoteAuthenticatorView Action="/User/Login" />
-
-
+@attribute [AllowAnonymous]
 <div class="page">
     <div class="login">
         <Form Model="@_model" OnFinish="HandleSubmit">

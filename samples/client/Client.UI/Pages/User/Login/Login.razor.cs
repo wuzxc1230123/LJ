@@ -1,4 +1,5 @@
 ﻿using Client.Model.User.Login;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ public partial class Login
             NavigationManager.NavigateTo("/");
             return;
         }
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
 
         if (_model.UserName == "user" && _model.Password == "ant.design") NavigationManager.NavigateTo("/");
     }
