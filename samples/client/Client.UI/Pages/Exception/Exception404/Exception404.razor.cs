@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Client.UI.Components;
+namespace Client.UI.Pages.Exception.Exception404;
 
 public partial class Exception404
 {
+    [Inject]
     [NotNull]
-    [Inject] 
     private NavigationManager? NavigationManager { get; set; }
 
     private void BackHome()

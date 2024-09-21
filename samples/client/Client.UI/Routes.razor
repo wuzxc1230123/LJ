@@ -1,6 +1,9 @@
-﻿@using Client.UI.Pages.User.Login
+﻿@using Client.UI.Pages.Exception.Exception404
+@using Client.UI.Pages.User.Login
 
 <AppRoot>
+    @* builder.Services.AddCascadingAuthenticationState(); *@
+
     <CascadingAuthenticationState>
         <Router AppAssembly="typeof(Routes).Assembly">
             <Found Context="routeData">
@@ -17,7 +20,8 @@
                         </Spin>
                     </Authorizing>
                     <NotAuthorized>
-                        @if (context.User.Identity == null || !context.User.Identity.IsAuthenticated)
+
+                       @*  @if (context.User.Identity == null || !context.User.Identity.IsAuthenticated)
                         {
                             <LayoutView Layout="@typeof(UserLayout)">
                                 <Login></Login>
@@ -26,7 +30,7 @@
                         else
                         {
                             <p>You are not authorized to access this resource.</p>
-                        }
+                        } *@
                     </NotAuthorized>
                 </AuthorizeView>
             </Found>
