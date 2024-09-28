@@ -1,5 +1,6 @@
 ﻿using AntDesign;
 using AntDesign.ProLayout;
+using Client.Model.Auth;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -13,29 +14,73 @@ namespace Client.UI.Layouts;
 
 public partial class MainLayout
 {
-    private bool Collapsed;
-    private MenuDataItem[] MenuData = [];
 
     [NotNull]
-    [Inject] 
+    [Inject]
     private ReuseTabsService? TabService { get; set; }
 
+    [Inject]
     [NotNull]
-    [Inject] 
+    private NavigationManager? NavigationManager { get; set; }
+
+    [NotNull]
+    [Inject]
     private HttpClient? HttpClient { get; set; }
+    /// <summary>
+    /// 获得/设置 是否折叠
+    /// </summary>
+    private bool Collapsed;
 
+    /// <summary>
+    /// 获得/设置 是否已授权
+    /// </summary>
+    private bool IsAuthenticated { get; set; }
 
+    private MenuDataItem[] MenuData = [];
+
+    private CurrentUserDto CurrentUser = new();
+
+    private AvatarMenuItem[] AvatarMenuItems { get; set; } =
+          [
+              //new() { Key = "center", IconType = "user", Option = L["menu.account.center"]},
+              //  new() { Key = "setting", IconType = "setting", Option = L["menu.account.settings"] },
+                new() { IsDivider = true },
+                new() { Key = "logout", IconType = "logout", Option ="退出登录"}
+          ];
     protected override async Task OnInitializedAsync()
     {
+        await base.OnInitializedAsync();
+
+
         MenuData = await HttpClient.GetFromJsonAsync<MenuDataItem[]>("data/menu.json");
+        CurrentUser = await HttpClient.GetFromJsonAsync<CurrentUserDto>("data/current_user.json");
+
+        var url = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        IsAuthenticated = await OnAuthorizingAsync(url);
+
     }
 
-    void Reload()
+    private async Task<bool> OnAuthorizingAsync(string url)
+    {
+       return await Task.FromResult(true);
+    }
+
+    private void HandleSelectUser(MenuItem item)
+    {
+        switch (item.Key)
+        {
+            case "logout":
+                NavigationManager.NavigateTo("/user/login");
+                break;
+        }
+    }
+
+    private void Reload()
     {
         TabService.ReloadPage();
     }
 
-    void Toggle()
+    private void Toggle()
     {
         Collapsed = !Collapsed;
     }

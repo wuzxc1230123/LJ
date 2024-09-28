@@ -1,11 +1,12 @@
 ﻿@namespace Client.UI.Layouts
 @inherits LayoutComponentBase
 
-<AntDesign.ProLayout.BasicLayout 
-    Logo="@("https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg")"
-    MenuData="MenuData"
-    MenuAccordion
-    @bind-Collapsed="Collapsed">
+@* @if (IsAuthenticated)
+{ *@
+<AntDesign.ProLayout.BasicLayout Logo="@("https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg")"
+                                 MenuData="MenuData"
+                                 MenuAccordion="true"
+                                 @bind-Collapsed="Collapsed">
     <HeaderContentRender>
         <Space Size="@("24")">
             <SpaceItem>
@@ -17,13 +18,30 @@
         </Space>
     </HeaderContentRender>
     <RightContentRender>
-        <RightContent/>
+        <Space Size="@("24")">
+
+            <SpaceItem>
+                <AvatarDropdown Name="@CurrentUser.Name"
+                                Avatar="@CurrentUser.Avatar"
+                                MenuItems="@AvatarMenuItems"
+                                OnItemSelected="HandleSelectUser" />
+            </SpaceItem>
+
+        </Space>
+
     </RightContentRender>
     <ChildContent>
         <ReuseTabs></ReuseTabs>
     </ChildContent>
     <FooterRender>
-       <FooterContent></FooterContent>
+        <FooterContent></FooterContent>
     </FooterRender>
+
 </AntDesign.ProLayout.BasicLayout>
 
+@* }
+else
+{
+  <div>a</div>
+}
+ *@

@@ -1,12 +1,6 @@
-﻿using Client.Model.User.Login;
-using Microsoft.AspNetCore.Authorization;
+﻿using Client.Model.Auth;
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Client.UI.Pages.User.Login;
 
@@ -17,6 +11,9 @@ public partial class Login
     [NotNull]
     [Inject] 
     public NavigationManager? NavigationManager { get; set; }
+
+    //[Inject]
+    //public ClientAuthenticationStateProvider? AuthStateProvider { get; set; }
 
     public void HandleSubmit()
     {

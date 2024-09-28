@@ -5,26 +5,10 @@
     <CascadingAuthenticationState>
         <Router AppAssembly="typeof(Routes).Assembly">
             <Found Context="routeData">
-
-                <AuthorizeView>
-                    <Authorized>
-                        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-                        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
-                    </Authorized>
-                    <Authorizing>
-                        <Spin Tip="Loading...">
-                            <Alert Message="Authentication in progress"
-                                   Description="You can only see this content while authentication is in progress."
-                                   Type="info" />
-                        </Spin>
-                    </Authorizing>
-                    <NotAuthorized>
-                        <LayoutView Layout="@typeof(UserLayout)">
-                            <Login></Login>
-                        </LayoutView>
-
-                    </NotAuthorized>
-                </AuthorizeView>
+                <CascadingValue Value="routeData">
+                    <RouteView RouteData="routeData" DefaultLayout="typeof(MainLayout)" />
+                </CascadingValue>
+                <FocusOnNavigate RouteData="routeData" Selector="h1" />
             </Found>
             <NotFound>
                 <LayoutView Layout="@typeof(UserLayout)">
